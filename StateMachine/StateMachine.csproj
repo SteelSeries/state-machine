@@ -2,8 +2,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard1.0;net45;net40</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Vietnam Team</Authors>
     <Description>A simple conventional state machine, inspired by Scott Hanselman's stateless</Description>
   </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /Y $(ProjectDir)bin\Release\*.nupkg $(SolutionDir)Out\&#xD;&#xA;" />
+  </Target>
 
 </Project>

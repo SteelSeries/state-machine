@@ -7,8 +7,4 @@
     <Description>A simple conventional state machine, inspired by Scott Hanselman's stateless</Description>
   </PropertyGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /Y $(ProjectDir)bin\Release\*.nupkg $(SolutionDir)Out\&#xD;&#xA;" />
-  </Target>
-
 </Project>

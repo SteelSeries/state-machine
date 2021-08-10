@@ -19,7 +19,9 @@ if not %TEST_STATUS%==0 goto FAIL
 goto FINISH
 
 :FINISH
-xcopy /Y StateMachine\bin\Release\*.nupkg Out\
+echo:
+echo SUCCEED
+xcopy /Y /e /q StateMachine\bin\Release\* Out\
 echo Publish to BaGet: nuget push -Source https://nuget.steelseries.io/v3/index.json package.nupkg
 pause 
 exit /b 1

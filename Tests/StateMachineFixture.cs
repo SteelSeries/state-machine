@@ -61,6 +61,7 @@ namespace StateMachine.Tests
             int value = 0;
             sm.Configure(State.B)
                 .Permit(Trigger.X, State.A, () => value = 1);
+            sm.Activate();
             sm.Fire(Trigger.X);
             Assert.Equal(1, value);
         }
@@ -85,7 +86,7 @@ namespace StateMachine.Tests
             sm.Configure(State.B)
                 .PermitIf(Trigger.X, State.A, () => false, () => value = 1)
                 .PermitIf(Trigger.X, State.C, () => true, () => value = 2);
-
+            sm.Activate();
             sm.Fire(Trigger.X);
 
             Assert.Equal(State.C, sm.State);
@@ -98,6 +99,7 @@ namespace StateMachine.Tests
             var sm = new StateMachine<State, Trigger>(State.B);
             sm.Configure(State.B)
                 .InternalTransition(Trigger.X);
+            sm.Activate();
             sm.Fire(Trigger.X);
 
             Assert.Equal(State.B, sm.State);
@@ -112,6 +114,7 @@ namespace StateMachine.Tests
                 .OnEntry(() => value = 1)
                 .InternalTransition(Trigger.X)
                 .OnExit(() => value = 2);
+            sm.Activate();
             sm.Fire(Trigger.X);
 
             Assert.Equal(0, value);
@@ -126,6 +129,7 @@ namespace StateMachine.Tests
             sm.Configure(State.A)
                 .OnEntry(() => sm.Fire(Trigger.Y))
                 .Permit(Trigger.Y, State.C);
+            sm.Activate();
             sm.Fire(Trigger.X);
             Assert.Equal(State.C, sm.State);
         }
@@ -141,6 +145,7 @@ namespace StateMachine.Tests
                 .OnEntry(() => value1 = 1)
                 .OnEntry(() => value2 = 2)
                 .PermitReentry(Trigger.X);
+            sm.Activate();
             sm.Fire(Trigger.X);
 
             Assert.Equal(1, value1);

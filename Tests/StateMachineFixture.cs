@@ -29,10 +29,20 @@ namespace StateMachine.Tests
         }
 
         [Fact]
+        public void CannotFireIfNotActivated()
+        {
+            var sm = new StateMachine<State, Trigger>(State.B);
+            int value = 0;
+            sm.Configure(State.B)
+                .Permit(Trigger.X, State.A, () => { value = 1; });
+            sm.Fire(Trigger.X);
+            Assert.Equal(0, value);
+        }
+
+        [Fact]
         public void ActivateActionExecuted()
         {
-            var initial = State.B;
-            var sm = new StateMachine<State, Trigger>(initial);
+            var sm = new StateMachine<State, Trigger>(State.B);
             sm.Configure(State.B)
                 .Permit(Trigger.X, State.A)
                 .OnActivate(() => sm.Fire(Trigger.X));

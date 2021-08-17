@@ -56,6 +56,8 @@ namespace StateMachine
 
         public void Fire(TTrigger trigger)
         {
+            if (!IsActivated) return;
+            
             _triggerQueue.Enqueue(trigger);
 
             if (_firing)

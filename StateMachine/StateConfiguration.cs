@@ -194,6 +194,19 @@ namespace StateMachine
                 return this;
             }
 
+            public StateConfiguration PermitReentryIf(TTrigger trigger, Func<bool> guard)
+            {
+                _representation.AddTransition(new Transition(
+                    _representation.UnderlyingState,
+                    _representation.UnderlyingState,
+                    trigger,
+                    guard,
+                    () => true,
+                    false
+                ));
+                return this;
+            }
+
             public StateConfiguration PermitReentryIf(TTrigger trigger, Action action, Func<bool> guard)
             {
                 _representation.AddTransition(new Transition(

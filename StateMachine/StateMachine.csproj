@@ -5,6 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Vietnam Team</Authors>
     <Description>A simple conventional state machine, inspired by Scott Hanselman's stateless</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>

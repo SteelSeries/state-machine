@@ -201,7 +201,7 @@ namespace StateMachine
                     _representation.UnderlyingState,
                     trigger,
                     guard,
-                    () => true,
+                    () => { },
                     false
                 ));
                 return this;

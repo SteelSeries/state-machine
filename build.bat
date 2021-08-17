@@ -10,6 +10,9 @@ SET DefMSBuild2015Path="%ProgramFiles(x86)%\MSBuild\14.0\bin\MSBuild.exe"
 
 rem IF "%MSBUILD_PATH%" == ""        CALL :setdefmsbuildpath
 
+echo Generate assets file
+dotnet restore
+
 echo **************************************************************************************
 echo                                        BUILD
 echo **************************************************************************************
